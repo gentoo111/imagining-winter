@@ -1,0 +1,302 @@
+{
+  "_rules": "Rates are per worker per hour, taken from FP 5.1 (per-person output / shift hours). Capacities use FP's 5/10/15 job tiers times 0.4 (our smaller camp) -> 2/4/6; costs are FP cost times (our capacity / FP capacity). Build times FP 1h20m-1h30m. min_level: FP — most buildings stop below 'cold' (-1), cookhouse below 'chilly' (0). Piles have no minimum (OURS: FP does not state one).",
+  "buildings": [
+    {
+      "id": "furnace",
+      "name": "火炉",
+      "size": [
+        2,
+        2
+      ],
+      "cost": {},
+      "build_minutes": 0,
+      "insulation": 0,
+      "beds": 0,
+      "workers": 0
+    },
+    {
+      "id": "coal_pile",
+      "name": "煤堆",
+      "size": [
+        1,
+        1
+      ],
+      "cost": {},
+      "build_minutes": 0,
+      "insulation": 0,
+      "workers": 6,
+      "pile": {
+        "resource": "coal",
+        "amount": 62.5
+      },
+      "rate": 1.02,
+      "_src": "FP Coal Pile 500 coal, 15 workers 15.3/h"
+    },
+    {
+      "id": "wood_crates",
+      "name": "木料堆",
+      "size": [
+        1,
+        1
+      ],
+      "cost": {},
+      "build_minutes": 0,
+      "insulation": 0,
+      "workers": 6,
+      "pile": {
+        "resource": "wood",
+        "amount": 15.0
+      },
+      "rate": 0.34,
+      "_src": "FP Wood Crates 120 wood, 15 workers 5.1/h"
+    },
+    {
+      "id": "scrap_heap",
+      "name": "残骸",
+      "size": [
+        1,
+        1
+      ],
+      "cost": {},
+      "build_minutes": 0,
+      "insulation": 0,
+      "workers": 6,
+      "pile": {
+        "resource": "parts",
+        "amount": 7.5
+      },
+      "rate": 0.23,
+      "_src": "FP Frozen Wreck 60 steel x k (docs/research/frostpunk-start-piles.md); was 25 by mistake"
+    },
+    {
+      "id": "workshop",
+      "name": "工作坊",
+      "size": [
+        1,
+        1
+      ],
+      "cost": {
+        "wood": 1.875,
+        "parts": 0.625
+      },
+      "build_minutes": 90,
+      "insulation": 2,
+      "workers": 1,
+      "engineers_only": true,
+      "researches": true,
+      "min_level": -1,
+      "_src": "FP Workshop 5 engineers, 15 wood 5 steel, 1h30m, base heat 2, 08-18; x0.4 workers, cost x k; workers 1 = OURS (choice B)"
+    },
+    {
+      "id": "gathering_post",
+      "name": "采集站",
+      "size": [
+        1,
+        1
+      ],
+      "cost": {
+        "wood": 6.0,
+        "parts": 2.0
+      },
+      "build_minutes": 90,
+      "insulation": 1,
+      "workers": 4,
+      "gathers_piles_radius": 4.0,
+      "gather_rates": {
+        "coal": 1.4,
+        "wood": 0.6,
+        "parts": 0.45
+      },
+      "min_level": -1,
+      "_src": "FP Gathering Post 10 workers: coal 14/h, wood 6/h, steel 4.5/h; 15 wood 5 steel"
+    },
+    {
+      "id": "coal_mine",
+      "name": "煤矿",
+      "size": [
+        2,
+        2
+      ],
+      "cost": {
+        "wood": 10.0,
+        "parts": 4.0,
+        "cores": 1.0
+      },
+      "build_minutes": 80,
+      "insulation": 1,
+      "workers": 4,
+      "needs_tile": "coal_seam",
+      "produces": {
+        "coal": 2.4
+      },
+      "min_level": -1,
+      "_src": "FP Coal Mine 10 workers 240 coal/day, 25 wood 10 steel 1 core (cores are discrete, not scaled)"
+    },
+    {
+      "id": "sawmill",
+      "name": "锯木厂",
+      "size": [
+        1,
+        1
+      ],
+      "cost": {
+        "wood": 4.0
+      },
+      "build_minutes": 80,
+      "insulation": 1,
+      "workers": 4,
+      "harvests_forest_radius": 3.0,
+      "rate": 0.8,
+      "min_level": -1,
+      "_src": "FP Sawmill 10 workers 80 wood/day, 10 wood"
+    },
+    {
+      "id": "hunter_hut",
+      "name": "猎人小屋",
+      "size": [
+        1,
+        1
+      ],
+      "cost": {
+        "wood": 8.0
+      },
+      "build_minutes": 90,
+      "insulation": 2,
+      "workers": 6,
+      "produces": {
+        "raw_food": 0.0833
+      },
+      "shift": "night",
+      "storm_stops": true,
+      "_src": "FP Hunters' Hut 15 hunters 15 raw/night (12h), 20 wood, hunters unaffected by cold while out"
+    },
+    {
+      "id": "cookhouse",
+      "name": "厨房",
+      "size": [
+        2,
+        1
+      ],
+      "cost": {
+        "wood": 8.0
+      },
+      "build_minutes": 90,
+      "insulation": 1,
+      "workers": 2,
+      "consumes": {
+        "raw_food": 4.0
+      },
+      "produces": {
+        "rations": 8.0
+      },
+      "min_level": 0,
+      "_src": "FP Cookhouse 5 staff, 1 raw -> 2 rations, 20 raw/h max, 20 wood"
+    },
+    {
+      "id": "medical_post",
+      "name": "医疗站",
+      "size": [
+        2,
+        2
+      ],
+      "cost": {
+        "wood": 10.0
+      },
+      "build_minutes": 90,
+      "insulation": 1,
+      "workers": 2,
+      "engineers_only": true,
+      "care_beds": 2,
+      "min_level": -1,
+      "shift": "always",
+      "_src": "FP Medical Post 5 beds 5 engineers, 25 wood; 100% staff cures Sick in 24h, cannot treat Gravely Ill (FP wiki Sickness/Medical_Post; Radical Treatment/Sustain Life not ported)",
+      "cure_hours_sick": 24.0
+    },
+    {
+      "id": "infirmary",
+      "name": "医院",
+      "size": [
+        3,
+        2
+      ],
+      "cost": {
+        "wood": 12.0,
+        "parts": 8.0,
+        "cores": 1.0
+      },
+      "build_minutes": 90,
+      "insulation": 2,
+      "workers": 4,
+      "engineers_only": true,
+      "care_beds": 4,
+      "cure_hours_sick": 12.0,
+      "cure_hours_grave": 24.0,
+      "min_level": -1,
+      "shift": "always",
+      "_src": "FP Infirmary (frostpunk.fandom.com/wiki/Infirmary): 10 patients, 10 engineers, 24h, base heat 2, 30 wood 20 steel 1 core; 100% cures Sick in 12h and Gravely Ill in 24h. x0.4 beds/staff/cost (cores discrete). Build time not on the wiki: Medical Post's 1h30m."
+    },
+    {
+      "id": "beacon",
+      "name": "灯塔",
+      "size": [
+        1,
+        1
+      ],
+      "cost": {
+        "wood": 2.5,
+        "parts": 4.4
+      },
+      "build_minutes": 80,
+      "insulation": 0,
+      "workers": 0,
+      "_src": "FP Beacon 20 wood 35 steel 1h20m, x k (one-off camp building); unlocks scouting"
+    },
+    {
+      "id": "tent",
+      "name": "帐篷",
+      "size": [
+        1,
+        1
+      ],
+      "cost": {
+        "wood": 4.0
+      },
+      "build_minutes": 90,
+      "insulation": 1,
+      "beds": 4,
+      "_src": "FP Tent 10 beds, heat 1, 10 wood"
+    },
+    {
+      "id": "bunkhouse",
+      "name": "营房",
+      "size": [
+        2,
+        1
+      ],
+      "cost": {
+        "wood": 8.0,
+        "parts": 4.0
+      },
+      "build_minutes": 90,
+      "insulation": 2,
+      "beds": 4,
+      "_src": "FP Bunkhouse 10 beds, heat 2, 20 wood 10 steel"
+    },
+    {
+      "id": "house",
+      "name": "木屋",
+      "size": [
+        2,
+        2
+      ],
+      "cost": {
+        "wood": 14.0,
+        "parts": 10.0
+      },
+      "build_minutes": 90,
+      "insulation": 3,
+      "beds": 4,
+      "_src": "FP House 10 beds, heat 3, 35 wood 25 steel; build time unknown in FP"
+    }
+  ]
+}

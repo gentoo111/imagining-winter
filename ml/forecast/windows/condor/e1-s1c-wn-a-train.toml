@@ -1,0 +1,25 @@
+# e1 GPU chain 11/12: S1-12b: diffusion retrained on the windnoise training set (selected-v3 recipe, 100000 steps); --then queue_eval writes nothing under Condor (e1-s1c-wn-b-eval follows via [after])
+# Legacy equivalent: queue job s1c_wn_a_train.cmd. Body: D:/LastEmbers/e1/condor/e1-s1c-wn-a-train.cmd (same file in this directory):
+# Own cwd (holds the wrapper's STOP file); the body does cd ml\forecast, mkdir outputs, verify (SHA256SUMS), run.
+# Segments: the script exits 85 at its 10200 s budget or on the STOP file; HTCondor restarts it in place and it
+# resumes from the parts / .state on disk.
+name        = "e1-s1c-wn-a-train"
+project     = "paper"
+lane        = "win-gpu"
+cpus        = 2
+memory_gb   = 10
+gpus        = 1
+expected_hours = 6
+segment_hours  = 3
+
+[run]
+cwd  = "D:/compute/runs/e1-s1c-wn-a-train"
+cmd  = "C:/Windows/System32/cmd.exe"
+args = ["/c", "D:\\LastEmbers\\e1\\condor\\e1-s1c-wn-a-train.cmd"]
+env  = { PYTHONUTF8 = "1", PYTHONPATH = "D:\\LastEmbers\\e1\\ml\\forecast", E1_FC = "D:\\LastEmbers\\e1\\ml\\forecast", DEVICE = "cuda", SEED = "1", V3_CFG = "C", LR = "1e-3", TF32 = "1", VAL_EVERY = "1000", CHAIN_TRAIN_PY = "D:\\LastEmbers\\e1\\ml\\forecast\\windows\\windnoise\\train.py", CHAIN_ENV = "V3_CFG,LR,TF32,SEED,E1_FC,PYTHONUTF8,CHAIN_ENV" }
+
+[after]
+jobs = ["e1-s19-a-samples"]
+
+[notify]
+session = "paper-e1"

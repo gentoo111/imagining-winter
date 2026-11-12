@@ -1,0 +1,523 @@
+% Bibliography for the Last Embers forecasting paper.
+% Source of truth: docs/ml/DIFFUSION-RESEARCH.md (Section 6 + Section 4, checkmark = opened and verified)
+% and the verified list in DIFFUSION-PROPOSAL.md v1 (commit ac6fc39).
+% Every entry is checked by ~/Tools/refgate (ledger refs.verified.json): metadata against arXiv/Crossref/DBLP/
+% OpenReview, and each citing sentence against the source (s1-13c-refs-verified, 2026-11-04).
+
+%% ---------------- Chaos, extremes ----------------
+@article{lorenz1963,
+  author  = {Lorenz, Edward N.},
+  title   = {Deterministic Nonperiodic Flow},
+  journal = {Journal of the Atmospheric Sciences},
+  volume  = {20},
+  pages   = {130--141},
+  year    = {1963}
+}
+@book{sprott2003,
+  author    = {Sprott, Julien C.},
+  title     = {Chaos and Time-Series Analysis},
+  publisher = {Oxford University Press},
+  year      = {2003},
+  doi       = {10.1093/oso/9780198508397.001.0001}
+}
+@misc{sprott1997lorenzle,
+  author       = {Sprott, J. C.},
+  title        = {Lyapunov Exponent and Dimension of the {L}orenz Attractor},
+  howpublished = {\url{https://sprott.physics.wisc.edu/chaos/lorenzle.htm}},
+  year         = {1997},
+  note         = {Web page, revised 2005; accessed 2026-11-04}
+}
+@article{sterk2012,
+  author  = {Sterk, A. E. and Holland, M. P. and Rabassa, P. and Broer, H. W. and Vitolo, R.},
+  title   = {Predictability of Extreme Values in Geophysical Models},
+  journal = {Nonlinear Processes in Geophysics},
+  volume  = {19},
+  number  = {5},
+  pages   = {529--539},
+  year    = {2012},
+  doi     = {10.5194/npg-19-529-2012}
+}
+@article{farazmand2019,
+  author  = {Farazmand, Mohammad and Sapsis, Themistoklis P.},
+  title   = {Extreme Events: Mechanisms and Prediction},
+  journal = {Applied Mechanics Reviews},
+  volume  = {71},
+  number  = {5},
+  pages   = {050801},
+  year    = {2019}
+}
+@article{guth2019,
+  author  = {Guth, Stephen and Sapsis, Themistoklis P.},
+  title   = {Machine Learning Predictors of Extreme Events Occurring in Complex Dynamical Systems},
+  journal = {Entropy},
+  volume  = {21},
+  number  = {10},
+  pages   = {925},
+  year    = {2019}
+}
+@inproceedings{gilpin2021,
+  author    = {Gilpin, William},
+  title     = {Chaos as an Interpretable Benchmark for Forecasting and Data-Driven Modelling},
+  booktitle = {NeurIPS Datasets and Benchmarks Track},
+  year      = {2021},
+  note      = {arXiv:2110.05266}
+}
+@inproceedings{nathaniel2024chaosbench,
+  author    = {Nathaniel, Juan and others},
+  title     = {{ChaosBench}: A Multi-Channel, Physics-Based Benchmark for Subseasonal-to-Seasonal Climate Prediction},
+  booktitle = {NeurIPS Datasets and Benchmarks Track},
+  year      = {2024},
+  note      = {arXiv:2402.00712}
+}
+@misc{katsidoniotaki2026,
+  author = {Katsidoniotaki, Eirini and Sapsis, Themistoklis P.},
+  title  = {Dynamics-Informed Deep Learning for Predicting Extreme Events},
+  year   = {2026},
+  eprint = {2603.10777},
+  archivePrefix = {arXiv},
+  note   = {arXiv:2603.10777}
+}
+
+%% ---------------- Filtering / oracle ----------------
+@article{gordon1993,
+  author  = {Gordon, N. J. and Salmond, D. J. and Smith, A. F. M.},
+  title   = {Novel Approach to Nonlinear/Non-{G}aussian {B}ayesian State Estimation},
+  journal = {IEE Proceedings F},
+  volume  = {140},
+  number  = {2},
+  pages   = {107--113},
+  year    = {1993}
+}
+@incollection{doucet2011,
+  author    = {Doucet, Arnaud and Johansen, Adam M.},
+  title     = {A Tutorial on Particle Filtering and Smoothing: Fifteen Years Later},
+  booktitle = {The Oxford Handbook of Nonlinear Filtering},
+  editor    = {Crisan, D. and Rozovskii, B.},
+  pages     = {656--705},
+  publisher = {Oxford University Press},
+  year      = {2011}
+}
+@article{vanleeuwen2009,
+  author  = {van Leeuwen, Peter Jan},
+  title   = {Particle Filtering in Geophysical Systems},
+  journal = {Monthly Weather Review},
+  volume  = {137},
+  pages   = {4089--4114},
+  year    = {2009}
+}
+%% ---------------- Forecast verification ----------------
+@article{gneiting2007proper,
+  author  = {Gneiting, Tilmann and Raftery, Adrian E.},
+  title   = {Strictly Proper Scoring Rules, Prediction, and Estimation},
+  journal = {Journal of the American Statistical Association},
+  volume  = {102},
+  pages   = {359--378},
+  year    = {2007}
+}
+@article{gneiting2007calibration,
+  author  = {Gneiting, Tilmann and Balabdaoui, Fadoua and Raftery, Adrian E.},
+  title   = {Probabilistic Forecasts, Calibration and Sharpness},
+  journal = {Journal of the Royal Statistical Society: Series B},
+  volume  = {69},
+  number  = {2},
+  pages   = {243--268},
+  year    = {2007}
+}
+@article{hamill2001,
+  author  = {Hamill, Thomas M.},
+  title   = {Interpretation of Rank Histograms for Verifying Ensemble Forecasts},
+  journal = {Monthly Weather Review},
+  volume  = {129},
+  pages   = {550--560},
+  year    = {2001}
+}
+@article{hersbach2000,
+  author  = {Hersbach, Hans},
+  title   = {Decomposition of the Continuous Ranked Probability Score for Ensemble Prediction Systems},
+  journal = {Weather and Forecasting},
+  volume  = {15},
+  pages   = {559--570},
+  year    = {2000}
+}
+@article{scheuerer2015,
+  author  = {Scheuerer, Michael and Hamill, Thomas M.},
+  title   = {Variogram-Based Proper Scoring Rules for Probabilistic Forecasts of Multivariate Quantities},
+  journal = {Monthly Weather Review},
+  volume  = {143},
+  pages   = {1321--1334},
+  year    = {2015}
+}
+@article{richardson2000,
+  author  = {Richardson, David S.},
+  title   = {Skill and Relative Economic Value of the {ECMWF} Ensemble Prediction System},
+  journal = {Quarterly Journal of the Royal Meteorological Society},
+  volume  = {126},
+  pages   = {649--667},
+  year    = {2000}
+}
+@article{zhu2002,
+  author  = {Zhu, Yuejian and Toth, Zoltan and Wobus, Richard and Richardson, David and Mylne, Kenneth},
+  title   = {The Economic Value of Ensemble-Based Weather Forecasts},
+  journal = {Bulletin of the American Meteorological Society},
+  volume  = {83},
+  pages   = {73--83},
+  year    = {2002}
+}
+@article{millner2009,
+  author  = {Millner, Antony},
+  title   = {What Is the True Value of Forecasts?},
+  journal = {Weather, Climate, and Society},
+  volume  = {1},
+  number  = {1},
+  pages   = {22--37},
+  year    = {2009}
+}
+
+%% ---------------- Diffusion and probabilistic forecasting ----------------
+@inproceedings{tashiro2021csdi,
+  author    = {Tashiro, Yusuke and Song, Jiaming and Song, Yang and Ermon, Stefano},
+  title     = {{CSDI}: Conditional Score-Based Diffusion Models for Probabilistic Time Series Imputation},
+  booktitle = {Advances in Neural Information Processing Systems},
+  year      = {2021},
+  note      = {arXiv:2107.03502}
+}
+@inproceedings{rasul2021timegrad,
+  author    = {Rasul, Kashif and Seward, Calvin and Schuster, Ingmar and Vollgraf, Roland},
+  title     = {Autoregressive Denoising Diffusion Models for Multivariate Probabilistic Time Series Forecasting},
+  booktitle = {International Conference on Machine Learning},
+  year      = {2021},
+  note      = {arXiv:2101.12072}
+}
+@inproceedings{kollovieh2023tsdiff,
+  author    = {Kollovieh, Marcel and others},
+  title     = {Predict, Refine, Synthesize: Self-Guiding Diffusion Models for Probabilistic Time Series Forecasting},
+  booktitle = {Advances in Neural Information Processing Systems},
+  year      = {2023},
+  note      = {arXiv:2307.11494}
+}
+@inproceedings{yuan2024diffusionts,
+  author    = {Yuan, Xinyu and Qiao, Yan},
+  title     = {{Diffusion-TS}: Interpretable Diffusion for General Time Series Generation},
+  booktitle = {International Conference on Learning Representations},
+  year      = {2024},
+  note      = {arXiv:2403.01742}
+}
+@misc{lin2023survey,
+  author = {Lin, Lequan and others},
+  title  = {Diffusion Models for Time Series Applications: A Survey},
+  year   = {2023},
+  note   = {arXiv:2305.00624}
+}
+@article{price2025gencast,
+  author  = {Price, Ilan and others},
+  title   = {Probabilistic Weather Forecasting with Machine Learning},
+  journal = {Nature},
+  volume  = {637},
+  pages   = {84--90},
+  year    = {2025},
+  doi     = {10.1038/s41586-024-08252-9}
+}
+@inproceedings{rozet2023sda,
+  author    = {Rozet, Fran{\c{c}}ois and Louppe, Gilles},
+  title     = {Score-Based Data Assimilation},
+  booktitle = {Advances in Neural Information Processing Systems},
+  year      = {2023},
+  note      = {arXiv:2306.10574}
+}
+@inproceedings{cachay2023dyffusion,
+  author    = {R{\"u}hling Cachay, Salva and Zhao, Bo and Joren, Hailey and Yu, Rose},
+  title     = {{DYffusion}: A Dynamics-Informed Diffusion Model for Spatiotemporal Forecasting},
+  booktitle = {Advances in Neural Information Processing Systems},
+  year      = {2023},
+  note      = {arXiv:2306.01984}
+}
+@misc{howard2026ensembles,
+  author = {Howard, Lucas J. and Barnes, Elizabeth A.},
+  title  = {Do {AI} Forecast Ensembles Sample the Correct Conditional Distribution?},
+  year   = {2026},
+  eprint = {2608.08954},
+  archivePrefix = {arXiv},
+  note   = {arXiv:2608.08954}
+}
+@misc{wei2026surge,
+  author = {Wei, Lifu and Ren, Yinuo and Shi, Naichen and Lu, Yiping},
+  title  = {{SURGE}: Approximation and Training Free Particle Filter for Diffusion Surrogate},
+  year   = {2026},
+  eprint = {2605.18745},
+  archivePrefix = {arXiv},
+  note   = {arXiv:2605.18745; accepted at ICML 2026}
+}
+@misc{wang2026calibrated,
+  author = {Wang, Wen-Ting and Tzeng, ShengLi and Fan, Yu-Ting and Huang, Hsin-Cheng},
+  title  = {Calibrated Predictive Distributions from Sample-Based Generators},
+  year   = {2026},
+  eprint = {2609.19035},
+  archivePrefix = {arXiv},
+  note   = {arXiv:2609.19035}
+}
+@misc{falezza2026rank,
+  author = {Falezza, Alessandro},
+  title  = {When Forecast Accuracy Fails: Rank Correlation and Decision Quality in Multi-Market Battery Storage Optimization},
+  year   = {2026},
+  eprint = {2604.12082},
+  archivePrefix = {arXiv},
+  note   = {arXiv:2604.12082}
+}
+@misc{barsainyan2025stori,
+  author = {Barsainyan, Aryan Amit and Lim, Jing Yu and Liu, Dianbo},
+  title  = {{STORI}: A Benchmark and Taxonomy for Stochastic Environments},
+  year   = {2025},
+  eprint = {2509.01793},
+  archivePrefix = {arXiv},
+  note   = {arXiv:2509.01793}
+}
+@article{sadeghi2026calibench,
+  author  = {Sadeghi, Jonathan and Seidenschwarz, Jenny and Allardice, Jesse and Srinivasan, Sirish and Graham, Benjamin and Hawke, Jeffrey},
+  title   = {{CaliBench}: Are the Stochastic Dynamics of Video World Models Physically Calibrated?},
+  journal = {Transactions on Machine Learning Research},
+  year    = {2026},
+  eprint  = {2608.16829},
+  archivePrefix = {arXiv},
+  note    = {arXiv:2608.16829}
+}
+
+%% ---------------- Diffusion for decision-making ----------------
+@inproceedings{janner2022diffuser,
+  author    = {Janner, Michael and Du, Yilun and Tenenbaum, Joshua B. and Levine, Sergey},
+  title     = {Planning with Diffusion for Flexible Behavior Synthesis},
+  booktitle = {International Conference on Machine Learning},
+  year      = {2022},
+  note      = {arXiv:2205.09991}
+}
+@inproceedings{ajay2023decisiondiffuser,
+  author    = {Ajay, Anurag and Du, Yilun and Gupta, Abhi and Tenenbaum, Joshua B. and Jaakkola, Tommi S. and Agrawal, Pulkit},
+  title     = {Is Conditional Generative Modeling All You Need for Decision-Making?},
+  booktitle = {International Conference on Learning Representations},
+  year      = {2023},
+  note      = {arXiv:2211.15657}
+}
+@article{zhou2024dmpc,
+  author  = {Zhou, Guangyao and others},
+  title   = {Diffusion Model Predictive Control},
+  journal = {Transactions on Machine Learning Research},
+  year    = {2025},
+  note    = {arXiv:2410.05364}
+}
+@inproceedings{ren2025dppo,
+  author    = {Ren, Allen Z. and others},
+  title     = {Diffusion Policy Policy Optimization},
+  booktitle = {International Conference on Learning Representations},
+  year      = {2025},
+  note      = {arXiv:2409.00588}
+}
+@misc{ma2025discretediffusionrl,
+  author = {Ma, Haitong and Nabati, Ofir and Rosenberg, Aviv and Dai, Bo and others},
+  title  = {Reinforcement Learning with Discrete Diffusion Policies for Combinatorial Action Spaces},
+  year   = {2025},
+  note   = {arXiv:2509.22963}
+}
+
+%% ---------------- Forecast value for control / RL ----------------
+@article{zanutto2025,
+  author  = {Zanutto, D. and Ficch{\`i}, A. and Giuliani, M. and Castelletti, A.},
+  title   = {Reinforcement Learning of Multi-Timescale Forecast Information for Designing Operating Policies of Multi-Purpose Reservoirs},
+  journal = {Water Resources Research},
+  volume  = {61},
+  number  = {2},
+  pages   = {e2023WR036724},
+  year    = {2025},
+  doi     = {10.1029/2023WR036724}
+}
+@article{schmitz2024,
+  author  = {Schmitz, Simon and Brucke, Karoline and Kasturi, Pranay and Ansari, Esmail and Klement, Peter},
+  title   = {Forecast-Based and Data-Driven Reinforcement Learning for Residential Heat Pump Operation},
+  journal = {Applied Energy},
+  volume  = {371},
+  pages   = {123688},
+  year    = {2024},
+  doi     = {10.1016/j.apenergy.2024.123688}
+}
+@misc{ruelens2015,
+  author = {Ruelens, Frederik and others},
+  title  = {Residential Demand Response Applications Using Batch Reinforcement Learning},
+  year   = {2015},
+  note   = {arXiv:1504.02125}
+}
+@misc{wang2024pomdpag,
+  author = {Wang, Zhaoan and Xiao, Shaoping and Li, Junchao and Wang, Jun},
+  title  = {Learning-Based Agricultural Management in Partially Observable Environments Subject to Climate Variability},
+  year   = {2024},
+  note   = {arXiv:2401.01273}
+}
+@misc{gautron2022gymdssat,
+  author = {Gautron, Romain and others},
+  title  = {{gym-DSSAT}: A Crop Model Turned into a Reinforcement Learning Environment},
+  year   = {2022},
+  note   = {arXiv:2207.03270}
+}
+@misc{overweg2021cropgym,
+  author = {Overweg, Hiske and others},
+  title  = {{CropGym}: A Reinforcement Learning Environment for Crop Management},
+  year   = {2021},
+  note   = {arXiv:2104.04326}
+}
+@inproceedings{turchetta2022cyclesgym,
+  author    = {Turchetta, Matteo and others},
+  title     = {Learning Long-Term Crop Management Strategies with {CyclesGym}},
+  booktitle = {NeurIPS Datasets and Benchmarks Track},
+  year      = {2022}
+}
+@misc{zarifis2025mpc,
+  author = {Zarifis, Stelios and Kordonis, Ioannis and Maragos, Petros},
+  title  = {Diffusion-Based Forecasting for Uncertainty-Aware Model Predictive Control},
+  year   = {2025},
+  note   = {arXiv:2503.15095}
+}
+@misc{zarifis2025tree,
+  author = {Zarifis, Stelios and Kordonis, Ioannis and Maragos, Petros},
+  title  = {Diffusion-Based Scenario Tree Generation for Multivariate Time Series Prediction and Multistage Stochastic Optimization},
+  year   = {2025},
+  note   = {arXiv:2509.14832}
+}
+@misc{sun2026diff2sp,
+  author = {Sun, Haixiang and Liu, Andrew},
+  title  = {{Diff2SP}: Diffusion Models for Correlated Scenario Generation in Stochastic Programming},
+  year   = {2026},
+  note   = {arXiv:2606.05649}
+}
+@misc{zhou2026dfsg,
+  author = {Zhou, Yangze and Zhou, Yihong and Morstyn, Thomas and Wang, Yi},
+  title  = {Decision-Focused Scenario Generation and Selection for Efficient and Robust Grid Dispatch},
+  year   = {2026},
+  note   = {arXiv:2607.05830}
+}
+
+%% ---------------- Chaos + partial observation + control ----------------
+@article{hammoud2024,
+  author  = {Hammoud, Mohamad Abed El Rahman and Raboudi, Naila and Titi, Edriss S. and Knio, Omar and Hoteit, Ibrahim},
+  title   = {Data Assimilation in Chaotic Systems Using Deep Reinforcement Learning},
+  journal = {Journal of Advances in Modeling Earth Systems},
+  volume  = {16},
+  number  = {8},
+  pages   = {e2023MS004178},
+  year    = {2024},
+  doi     = {10.1029/2023MS004178}
+}
+@article{weissenbacher2025,
+  author  = {Weissenbacher, Max and Borovykh, Anastasia and Rigas, Georgios},
+  title   = {Reinforcement Learning of Chaotic Systems Control in Partially Observable Environments},
+  journal = {Flow, Turbulence and Combustion},
+  volume  = {115},
+  number  = {3},
+  pages   = {1357--1378},
+  year    = {2025},
+  doi     = {10.1007/s10494-024-00632-5}
+}
+@article{kawasaki2024,
+  author  = {Kawasaki, Fumitoshi and Kotsuki, Shunji},
+  title   = {Leading the {L}orenz 63 System toward the Prescribed Regime by Model Predictive Control Coupled with Data Assimilation},
+  journal = {Nonlinear Processes in Geophysics},
+  volume  = {31},
+  pages   = {319--333},
+  year    = {2024}
+}
+
+%% ---------------- Exogenous MDPs ----------------
+@inproceedings{dietterich2018,
+  author    = {Dietterich, Thomas and Trimponias, George and Chen, Zhitang},
+  title     = {Discovering and Removing Exogenous State Variables and Rewards for Reinforcement Learning},
+  booktitle = {International Conference on Machine Learning},
+  year      = {2018},
+  note      = {arXiv:1806.01584}
+}
+@misc{sinclair2022,
+  author = {Sinclair, Sean R. and others},
+  title  = {Hindsight Learning for {MDP}s with Exogenous Inputs},
+  year   = {2022},
+  note   = {arXiv:2207.06272}
+}
+
+%% ---------------- Game / RL testbeds ----------------
+@inproceedings{hafner2022crafter,
+  author    = {Hafner, Danijar},
+  title     = {Benchmarking the Spectrum of Agent Capabilities},
+  booktitle = {International Conference on Learning Representations},
+  year      = {2022},
+  note      = {arXiv:2109.06780}
+}
+@misc{matthews2024craftax,
+  author = {Matthews, Michael and others},
+  title  = {Craftax: A Lightning-Fast Benchmark for Open-Ended Reinforcement Learning},
+  year   = {2024},
+  note   = {arXiv:2402.16801}
+}
+
+%% ---------------- Standard methods NOT in the verified lists ----------------
+@inproceedings{ho2020ddpm,
+  author    = {Ho, Jonathan and Jain, Ajay and Abbeel, Pieter},
+  title     = {Denoising Diffusion Probabilistic Models},
+  booktitle = {Advances in Neural Information Processing Systems},
+  year      = {2020}
+}
+@inproceedings{song2021ddim,
+  author    = {Song, Jiaming and Meng, Chenlin and Ermon, Stefano},
+  title     = {Denoising Diffusion Implicit Models},
+  booktitle = {International Conference on Learning Representations},
+  year      = {2021}
+}
+@inproceedings{nichol2021improved,
+  author    = {Nichol, Alexander Quinn and Dhariwal, Prafulla},
+  title     = {Improved Denoising Diffusion Probabilistic Models},
+  booktitle = {International Conference on Machine Learning},
+  year      = {2021}
+}
+@inproceedings{salimans2022progressive,
+  author    = {Salimans, Tim and Ho, Jonathan},
+  title     = {Progressive Distillation for Fast Sampling of Diffusion Models},
+  booktitle = {International Conference on Learning Representations},
+  year      = {2022}
+}
+@inproceedings{ronneberger2015unet,
+  author    = {Ronneberger, Olaf and Fischer, Philipp and Brox, Thomas},
+  title     = {{U-Net}: Convolutional Networks for Biomedical Image Segmentation},
+  booktitle = {Medical Image Computing and Computer-Assisted Intervention (MICCAI)},
+  year      = {2015}
+}
+@inproceedings{perez2018film,
+  author    = {Perez, Ethan and Strub, Florian and de Vries, Harm and Dumoulin, Vincent and Courville, Aaron},
+  title     = {{FiLM}: Visual Reasoning with a General Conditioning Layer},
+  booktitle = {AAAI Conference on Artificial Intelligence},
+  year      = {2018}
+}
+@inproceedings{cho2014gru,
+  author    = {Cho, Kyunghyun and others},
+  title     = {Learning Phrase Representations using {RNN} Encoder--Decoder for Statistical Machine Translation},
+  booktitle = {EMNLP},
+  year      = {2014}
+}
+@misc{schulman2017ppo,
+  author = {Schulman, John and Wolski, Filip and Dhariwal, Prafulla and Radford, Alec and Klimov, Oleg},
+  title  = {Proximal Policy Optimization Algorithms},
+  year   = {2017},
+  note   = {arXiv:1707.06347}
+}
+@misc{alain2016probes,
+  author = {Alain, Guillaume and Bengio, Yoshua},
+  title  = {Understanding Intermediate Layers Using Linear Classifier Probes},
+  year   = {2016},
+  note   = {arXiv:1610.01644}
+}
+@misc{frostpunk2018,
+  author       = {{11 bit studios}},
+  title        = {Frostpunk},
+  howpublished = {Video game, 11 bit studios, released 24 April 2018},
+  year         = {2018}
+}
+@inproceedings{peebles2023dit,
+  author    = {Peebles, William and Xie, Saining},
+  title     = {Scalable Diffusion Models with Transformers},
+  booktitle = {IEEE/CVF International Conference on Computer Vision (ICCV)},
+  year      = {2023},
+  eprint    = {2212.09748},
+  archivePrefix = {arXiv}
+}

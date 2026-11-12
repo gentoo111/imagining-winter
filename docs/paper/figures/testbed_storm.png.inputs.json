@@ -1,0 +1,8 @@
+{
+ "figure": "docs/paper/figures/testbed_storm.png",
+ "figure_sha256": "971dc3bc1d67a42438fa634fee4c930d758d2ad8cecf7c8ffe1643aff913361e",
+ "inputs": {
+  "docs/paper/figures/testbed_storm.sh": "c64a3b3520b19bd637c35521e19780bad441b56b871d80e9888b1db246202c0f"
+ },
+ "stamped": "2026-11-12T18:10:02+13:00"
+}

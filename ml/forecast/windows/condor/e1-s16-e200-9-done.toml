@@ -1,0 +1,24 @@
+# e1 GPU chain 4/12: S1-5: after the 4 model jobs -> out\eval200\done.json
+# Legacy equivalent: queue job s16_zz_e200_9_done.cmd. Body: D:/LastEmbers/e1/condor/e1-s16-e200-9-done.cmd (same file in this directory):
+# Own cwd (holds the wrapper's STOP file); the body does cd ml\forecast, mkdir outputs, verify (SHA256SUMS), run.
+# Single short run (no segments).
+name        = "e1-s16-e200-9-done"
+project     = "paper"
+lane        = "win-gpu"
+cpus        = 2
+memory_gb   = 10
+gpus        = 1
+expected_hours = 0.1
+segment_hours  = 0
+
+[run]
+cwd  = "D:/compute/runs/e1-s16-e200-9-done"
+cmd  = "C:/Windows/System32/cmd.exe"
+args = ["/c", "D:\\LastEmbers\\e1\\condor\\e1-s16-e200-9-done.cmd"]
+env  = { PYTHONUTF8 = "1" }
+
+[after]
+jobs = ["e1-s16-e200-4-v3s3"]
+
+[notify]
+session = "paper-e1"

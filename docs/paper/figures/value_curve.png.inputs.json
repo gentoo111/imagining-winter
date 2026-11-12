@@ -1,0 +1,9 @@
+{
+ "figure": "docs/paper/figures/value_curve.png",
+ "figure_sha256": "4fcf604e6c2ab48edcbd0cc41075841a95be0141db6dda63bf3877f9cba37fcd",
+ "inputs": {
+  "ml/forecast/out/value_curve.json": "559be8f6cf656380815d841b000422d1126c3624e3816f2de700162e2fe2c3c4",
+  "ml/forecast/value_curve.py": "613b8def50c73ab06161c0075b7895641ed5c30103aa8eb0480884efc0b87087"
+ },
+ "stamped": "2026-11-10T04:30:23+13:00"
+}

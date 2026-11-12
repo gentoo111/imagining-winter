@@ -1,0 +1,24 @@
+# e1 GPU chain 9/12: S1-8: after the 2 trainings + 2 evaluations -> out\secondary\done.json
+# Legacy equivalent: queue job s18_z_done.cmd. Body: D:/LastEmbers/e1/condor/e1-s18-z-done.cmd (same file in this directory):
+# Own cwd (holds the wrapper's STOP file); the body does cd ml\forecast, mkdir outputs, verify (SHA256SUMS), run.
+# Single short run (no segments).
+name        = "e1-s18-z-done"
+project     = "paper"
+lane        = "win-gpu"
+cpus        = 2
+memory_gb   = 10
+gpus        = 1
+expected_hours = 0.1
+segment_hours  = 0
+
+[run]
+cwd  = "D:/compute/runs/e1-s18-z-done"
+cmd  = "C:/Windows/System32/cmd.exe"
+args = ["/c", "D:\\LastEmbers\\e1\\condor\\e1-s18-z-done.cmd"]
+env  = { PYTHONUTF8 = "1", DEVICE = "cuda" }
+
+[after]
+jobs = ["e1-s18-d-eval-newhome"]
+
+[notify]
+session = "paper-e1"

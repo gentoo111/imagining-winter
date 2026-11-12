@@ -1,0 +1,717 @@
+{
+ "_src": "FP1 tech tree, docs/research/frostpunk-tech.md. Costs = FP x k (0.125), steel -> parts. Times = FP Medium per tier (tier techs take the time of the tier they open). Effects copied (percent) or as tiers. Rate multipliers chain to FP totals (115%->130%, +10%->+20%). Hunters' Gear 15->20 = x1.3333. Generator Efficiency II = 7/9 of base total. Range upgrades, Steam Hub, Factory, automatons, hothouse, kiln, wall drill, steelworks, depots, outposts not yet ported.",
+ "research_hours_by_tier": [
+  7,
+  8,
+  9,
+  10,
+  11,
+  12
+ ],
+ "difficulty_hours_add": {
+  "GENTLE": -2,
+  "STANDARD": 0,
+  "HARSH": 4,
+  "HARDCORE": 6
+ },
+ "_src_difficulty": "FP Infobox tech: Easy -2h, Hard +4h, Extreme +6h",
+ "efficiency_per_engineer": 1.0,
+ "_src_eff": "OURS (owner choice B, 2026-10-28): 1 engineer = 100% (FP is 20% each x5). FP's 5 of 80 people would be 2 of our 10 = 20% of the camp, which starved the camp of labour. Bands above 100% stay FP.",
+ "speed_bands": [
+  [
+   1.0,
+   1.0
+  ],
+  [
+   1.0,
+   0.3
+  ],
+  [
+   1.0,
+   0.2
+  ],
+  [
+   999.0,
+   0.1
+  ]
+ ],
+ "_src_bands": "FP Workshop: total efficiency 0-100% counts 1:1, 100-200% x0.3, 200-300% x0.2, then x0.1",
+ "techs": [
+  {
+   "id": "drawing_boards",
+   "name": "绘图板",
+   "tier": 0,
+   "branch": "tier",
+   "requires": [],
+   "cost": {
+    "wood": 6.25
+   },
+   "hours": 8,
+   "effects": {
+    "opens_tier": 1
+   }
+  },
+  {
+   "id": "drafting_machines",
+   "name": "制图机",
+   "tier": 1,
+   "branch": "tier",
+   "requires": [],
+   "cost": {
+    "wood": 9.375,
+    "parts": 3.125
+   },
+   "hours": 9,
+   "effects": {
+    "opens_tier": 2
+   }
+  },
+  {
+   "id": "mechanical_calculators",
+   "name": "机械计算器",
+   "tier": 2,
+   "branch": "tier",
+   "requires": [],
+   "cost": {
+    "wood": 12.5,
+    "parts": 6.25
+   },
+   "hours": 10,
+   "effects": {
+    "opens_tier": 3
+   }
+  },
+  {
+   "id": "difference_engine",
+   "name": "差分机",
+   "tier": 3,
+   "branch": "tier",
+   "requires": [],
+   "cost": {
+    "wood": 15.625,
+    "parts": 9.375
+   },
+   "hours": 11,
+   "effects": {
+    "opens_tier": 4
+   }
+  },
+  {
+   "id": "automatic_prototyping",
+   "name": "自动原型机",
+   "tier": 4,
+   "branch": "tier",
+   "requires": [],
+   "cost": {
+    "wood": 18.75,
+    "parts": 12.5
+   },
+   "hours": 12,
+   "effects": {
+    "opens_tier": 5
+   }
+  },
+  {
+   "id": "heaters",
+   "name": "取暖器",
+   "tier": 0,
+   "branch": "heating",
+   "requires": [],
+   "cost": {
+    "wood": 1.25
+   },
+   "hours": 7,
+   "effects": {
+    "heater_max": 1
+   }
+  },
+  {
+   "id": "improved_heaters",
+   "name": "改良取暖器",
+   "tier": 2,
+   "branch": "heating",
+   "requires": [
+    "heaters"
+   ],
+   "cost": {
+    "wood": 3.75,
+    "parts": 2.5
+   },
+   "hours": 9,
+   "effects": {
+    "heater_max": 2
+   }
+  },
+  {
+   "id": "advanced_heaters",
+   "name": "高级取暖器",
+   "tier": 4,
+   "branch": "heating",
+   "requires": [
+    "improved_heaters"
+   ],
+   "cost": {
+    "wood": 6.25,
+    "parts": 3.75
+   },
+   "hours": 11,
+   "effects": {
+    "heater_max": 3
+   }
+  },
+  {
+   "id": "heater_efficiency",
+   "name": "取暖器节能",
+   "tier": 3,
+   "branch": "heating",
+   "requires": [
+    "improved_heaters"
+   ],
+   "cost": {
+    "wood": 7.5,
+    "parts": 5.0
+   },
+   "hours": 10,
+   "effects": {
+    "heater_coal_minus": 1
+   }
+  },
+  {
+   "id": "generator_power_1",
+   "name": "火炉功率 I",
+   "tier": 1,
+   "branch": "heating",
+   "requires": [],
+   "cost": {
+    "wood": 2.5,
+    "parts": 1.25
+   },
+   "hours": 8,
+   "effects": {
+    "furnace_max": 2
+   }
+  },
+  {
+   "id": "generator_power_2",
+   "name": "火炉功率 II",
+   "tier": 3,
+   "branch": "heating",
+   "requires": [
+    "generator_power_1"
+   ],
+   "cost": {
+    "wood": 5.0,
+    "parts": 3.125
+   },
+   "hours": 10,
+   "effects": {
+    "furnace_max": 3
+   }
+  },
+  {
+   "id": "generator_power_3",
+   "name": "火炉功率 III",
+   "tier": 5,
+   "branch": "heating",
+   "requires": [
+    "generator_power_2"
+   ],
+   "cost": {
+    "wood": 15.0,
+    "parts": 10.0
+   },
+   "hours": 12,
+   "effects": {
+    "furnace_max": 4
+   }
+  },
+  {
+   "id": "generator_efficiency_1",
+   "name": "火炉节能 I",
+   "tier": 2,
+   "branch": "heating",
+   "requires": [
+    "generator_power_1"
+   ],
+   "cost": {
+    "wood": 3.75,
+    "parts": 2.5
+   },
+   "hours": 9,
+   "effects": {
+    "furnace_coal_mult": 0.9
+   }
+  },
+  {
+   "id": "generator_efficiency_2",
+   "name": "火炉节能 II",
+   "tier": 4,
+   "branch": "heating",
+   "requires": [
+    "generator_efficiency_1"
+   ],
+   "cost": {
+    "wood": 6.25,
+    "parts": 3.75
+   },
+   "hours": 11,
+   "effects": {
+    "furnace_coal_mult": 0.8642
+   }
+  },
+  {
+   "id": "overdrive_couplings",
+   "name": "超频耦合器",
+   "tier": 2,
+   "branch": "heating",
+   "requires": [
+    "generator_power_1"
+   ],
+   "cost": {
+    "wood": 3.75,
+    "parts": 2.5
+   },
+   "hours": 9,
+   "effects": {
+    "overdrive_levels": 2
+   },
+   "_src": "FP Overdrive Couplings: T2, needs Generator Power Upgrade I, 30 wood / 20 steel (x k), overdrive gives +2 heat levels instead of +1. FP time unknown; tier time (9h) like the rest."
+  },
+  {
+   "id": "generator_safety_bypass",
+   "name": "火炉安全旁路",
+   "tier": 5,
+   "branch": "heating",
+   "requires": [
+    "overdrive_couplings"
+   ],
+   "cost": {
+    "wood": 15.0,
+    "parts": 10.0
+   },
+   "hours": 12,
+   "effects": {
+    "pressure_up_mult": 0.75,
+    "pressure_down_mult": 1.25
+   },
+   "_src": "FP Generator Safety Bypass: T5, needs Overdrive Couplings, 120 wood / 80 steel (x k), pressure rises 25% slower and falls 25% faster (wiki: ~33h of overdrive, 99->0 in ~39.5h). Time = tier time (12h)."
+  },
+  {
+   "id": "beacon",
+   "name": "灯塔",
+   "tier": 0,
+   "branch": "exploration",
+   "requires": [],
+   "cost": {
+    "wood": 1.25
+   },
+   "hours": 7,
+   "effects": {
+    "unlock": [
+     "beacon"
+    ]
+   }
+  },
+  {
+   "id": "more_scouts",
+   "name": "更多侦察队",
+   "tier": 1,
+   "branch": "exploration",
+   "requires": [
+    "beacon"
+   ],
+   "cost": {
+    "wood": 2.5
+   },
+   "hours": 8,
+   "effects": {
+    "max_teams": 2
+   }
+  },
+  {
+   "id": "additional_scouts",
+   "name": "增派侦察队",
+   "tier": 4,
+   "branch": "exploration",
+   "requires": [
+    "more_scouts"
+   ],
+   "cost": {
+    "wood": 6.25,
+    "parts": 3.75
+   },
+   "hours": 11,
+   "effects": {
+    "max_teams": 3
+   }
+  },
+  {
+   "id": "lighter_sleds",
+   "name": "轻型雪橇",
+   "tier": 2,
+   "branch": "exploration",
+   "requires": [
+    "more_scouts"
+   ],
+   "cost": {
+    "wood": 3.75
+   },
+   "hours": 9,
+   "effects": {
+    "scout_speed": 1.5
+   }
+  },
+  {
+   "id": "boosted_sleds",
+   "name": "加速雪橇",
+   "tier": 5,
+   "branch": "exploration",
+   "requires": [
+    "lighter_sleds"
+   ],
+   "cost": {
+    "wood": 15.0,
+    "parts": 10.0
+   },
+   "hours": 12,
+   "effects": {
+    "scout_speed": 1.75
+   }
+  },
+  {
+   "id": "faster_gathering",
+   "name": "快速采集",
+   "tier": 0,
+   "branch": "resources",
+   "requires": [],
+   "cost": {
+    "wood": 1.25
+   },
+   "hours": 7,
+   "effects": {
+    "rate_mult": {
+     "coal_pile": 1.15,
+     "wood_crates": 1.15,
+     "scrap_heap": 1.15,
+     "gathering_post": 1.15
+    }
+   }
+  },
+  {
+   "id": "gathering_post_insulation",
+   "name": "采集站保温",
+   "tier": 2,
+   "branch": "resources",
+   "requires": [
+    "faster_gathering"
+   ],
+   "cost": {
+    "wood": 3.75,
+    "parts": 2.5
+   },
+   "hours": 9,
+   "effects": {
+    "insulation": {
+     "gathering_post": 1
+    }
+   }
+  },
+  {
+   "id": "efficient_gathering",
+   "name": "高效采集",
+   "tier": 3,
+   "branch": "resources",
+   "requires": [
+    "gathering_post_insulation"
+   ],
+   "cost": {
+    "wood": 5.0,
+    "parts": 3.125
+   },
+   "hours": 10,
+   "effects": {
+    "rate_mult": {
+     "coal_pile": 1.1304,
+     "wood_crates": 1.1304,
+     "scrap_heap": 1.1304,
+     "gathering_post": 1.1304
+    }
+   }
+  },
+  {
+   "id": "gathering_post_insulation_2",
+   "name": "采集站保温 II",
+   "tier": 4,
+   "branch": "resources",
+   "requires": [
+    "gathering_post_insulation"
+   ],
+   "cost": {
+    "wood": 6.25,
+    "parts": 3.75
+   },
+   "hours": 11,
+   "effects": {
+    "insulation": {
+     "gathering_post": 1
+    }
+   }
+  },
+  {
+   "id": "coal_mining",
+   "name": "煤矿",
+   "tier": 1,
+   "branch": "resources",
+   "requires": [],
+   "cost": {
+    "wood": 2.5,
+    "parts": 1.25
+   },
+   "hours": 8,
+   "effects": {
+    "unlock": [
+     "coal_mine"
+    ]
+   }
+  },
+  {
+   "id": "coal_mining_optimisation",
+   "name": "煤矿优化",
+   "tier": 2,
+   "branch": "resources",
+   "requires": [
+    "coal_mining"
+   ],
+   "cost": {
+    "wood": 3.75,
+    "parts": 2.5
+   },
+   "hours": 9,
+   "effects": {
+    "rate_mult": {
+     "coal_mine": 1.1
+    }
+   }
+  },
+  {
+   "id": "coal_mining_rationalisation",
+   "name": "煤矿合理化",
+   "tier": 4,
+   "branch": "resources",
+   "requires": [
+    "coal_mining_optimisation"
+   ],
+   "cost": {
+    "wood": 6.25,
+    "parts": 3.75
+   },
+   "hours": 11,
+   "effects": {
+    "rate_mult": {
+     "coal_mine": 1.0909
+    }
+   }
+  },
+  {
+   "id": "sawmill",
+   "name": "锯木厂",
+   "tier": 0,
+   "branch": "resources",
+   "requires": [],
+   "cost": {
+    "wood": 1.25
+   },
+   "hours": 7,
+   "effects": {
+    "unlock": [
+     "sawmill"
+    ]
+   }
+  },
+  {
+   "id": "sawmill_upgrade",
+   "name": "锯木厂升级",
+   "tier": 1,
+   "branch": "resources",
+   "requires": [
+    "sawmill"
+   ],
+   "cost": {
+    "parts": 1.25
+   },
+   "hours": 8,
+   "effects": {
+    "rate_mult": {
+     "sawmill": 1.25
+    }
+   }
+  },
+  {
+   "id": "hunters_gear",
+   "name": "猎人装备",
+   "tier": 0,
+   "branch": "food",
+   "requires": [],
+   "cost": {
+    "wood": 1.25
+   },
+   "hours": 7,
+   "effects": {
+    "rate_mult": {
+     "hunter_hut": 1.3333
+    }
+   }
+  },
+  {
+   "id": "medical_post_upgrade",
+   "name": "医疗站升级",
+   "tier": 1,
+   "branch": "food",
+   "requires": [],
+   "cost": {
+    "wood": 2.5,
+    "parts": 1.25
+   },
+   "hours": 8,
+   "effects": {
+    "cure_mult": 1.1
+   }
+  },
+  {
+   "id": "infirmary",
+   "name": "医院",
+   "tier": 2,
+   "branch": "food",
+   "requires": [
+    "medical_post_upgrade"
+   ],
+   "cost": {
+    "wood": 3.75,
+    "parts": 2.5
+   },
+   "hours": 9,
+   "effects": {
+    "unlock": [
+     "infirmary"
+    ]
+   },
+   "_src": "FP Infirmary (Technology): T2, requires Medical Post Upgrade, 30 wood 20 steel x k; unlocks the Infirmary (docs/research/frostpunk-tech.md)"
+  },
+  {
+   "id": "healthcare_insulation",
+   "name": "医疗保温",
+   "tier": 2,
+   "branch": "food",
+   "requires": [
+    "medical_post_upgrade"
+   ],
+   "cost": {
+    "wood": 3.75,
+    "parts": 2.5
+   },
+   "hours": 9,
+   "effects": {
+    "insulation": {
+     "medical_post": 1,
+     "infirmary": 1
+    }
+   },
+   "_src": "FP Healthcare Insulation: +1 heat level to Medical Post and Infirmary (wiki Infirmary upgrades)"
+  },
+  {
+   "id": "healthcare_insulation_2",
+   "name": "医疗保温 II",
+   "tier": 5,
+   "branch": "food",
+   "requires": [
+    "healthcare_insulation"
+   ],
+   "cost": {
+    "wood": 15.0,
+    "parts": 10.0
+   },
+   "hours": 12,
+   "effects": {
+    "insulation": {
+     "medical_post": 1,
+     "infirmary": 1
+    }
+   },
+   "_src": "FP Healthcare Insulation: +1 heat level to Medical Post and Infirmary (wiki Infirmary upgrades)"
+  },
+  {
+   "id": "bunkhouse",
+   "name": "工棚",
+   "tier": 1,
+   "branch": "food",
+   "requires": [],
+   "cost": {
+    "wood": 2.5,
+    "parts": 1.25
+   },
+   "hours": 8,
+   "effects": {
+    "unlock": [
+     "bunkhouse"
+    ]
+   }
+  },
+  {
+   "id": "house",
+   "name": "住宅",
+   "tier": 3,
+   "branch": "food",
+   "requires": [
+    "bunkhouse"
+   ],
+   "cost": {
+    "wood": 5.0,
+    "parts": 3.125
+   },
+   "hours": 10,
+   "effects": {
+    "unlock": [
+     "house"
+    ]
+   }
+  },
+  {
+   "id": "cookhouse_insulation",
+   "name": "炊事房保温",
+   "tier": 2,
+   "branch": "food",
+   "requires": [
+    "bunkhouse"
+   ],
+   "cost": {
+    "wood": 3.75,
+    "parts": 2.5
+   },
+   "hours": 9,
+   "effects": {
+    "insulation": {
+     "cookhouse": 1
+    }
+   }
+  },
+  {
+   "id": "house_insulation",
+   "name": "住宅保温",
+   "tier": 5,
+   "branch": "food",
+   "requires": [
+    "house"
+   ],
+   "cost": {
+    "wood": 15.0,
+    "parts": 10.0
+   },
+   "hours": 12,
+   "effects": {
+    "insulation": {
+     "house": 1
+    }
+   }
+  }
+ ]
+}

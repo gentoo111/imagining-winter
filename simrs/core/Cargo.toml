@@ -1,0 +1,14 @@
+[package]
+name = "lastembers_core"
+version = "0.1.0"
+edition = "2021"
+description = "Last Embers simulation core (bit-exact port of the GDScript sim, for RL)"
+
+[lib]
+name = "lastembers_core"
+path = "src/lib.rs"
+
+[dependencies]
+serde_json = { version = "1", features = ["preserve_order", "arbitrary_precision"] }
+sha2 = "0.10"
+libc = "0.2"

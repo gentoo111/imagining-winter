@@ -1,0 +1,10 @@
+{
+ "figure": "docs/paper/figures/e1_learning_curve.png",
+ "figure_sha256": "35fda882c84b8b50864d4da9e41151d5511170121375cb1396a6f2ba1117dc1f",
+ "inputs": {
+  "ml/forecast/figures_paper.py": "dcbfcd0fdbda4d1979adc0598239a567e1515b05d880d37c8201cfa5803f7a61",
+  "ml/forecast/out/learning_curve/done.json": "0b9ebdff64258313b547483ba2d8a37dd697f4e7082472b04dffac124ee9991e",
+  "ml/forecast/out/learning_curve/summary.json": "9fbf77c07a8b5c6fd07b2dc2909d44dd9b650c1779d590f812d0d3d0ca0c18db"
+ },
+ "stamped": "2026-11-12T18:00:40+13:00"
+}

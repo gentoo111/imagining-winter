@@ -1,0 +1,18 @@
+{
+ "figure": "docs/paper/figures/reliability_all.png",
+ "figure_sha256": "56a551205a911f6408667a8b4bc94d75e6fb0683c0771426842635bffe1ad2be",
+ "inputs": {
+  "ml/forecast/figures_paper.py": "dcbfcd0fdbda4d1979adc0598239a567e1515b05d880d37c8201cfa5803f7a61",
+  "ml/forecast/out/eval200/bot_endurance_murky.npz": "ba9a989439709d657b6fb7c8c0bbb34113a20353756781508c409030613cb267",
+  "ml/forecast/out/eval200/clim_endurance_murky.npz": "23a6c039e79ea90fa042f3ffdbe3b045c5c0d4cf4b57df2677b7b44f95d744bd",
+  "ml/forecast/out/eval200/clock_endurance_murky.npz": "78b1d956fcc0d8ab029d975fccc6d37558772eae9b60babde47dae9ce5e955b4",
+  "ml/forecast/out/eval200/diff2_endurance_murky.npz": "5ab7d614d67582974c92dbd0eaa7d8e36b3b1ba02340254e18192c27f8c06820",
+  "ml/forecast/out/eval200/diff3s1_endurance_murky.npz": "7ced8af4a74b18a9f1a2f697d458a936e7889a89b5fbfe196184e7deef41e91d",
+  "ml/forecast/out/eval200/diff3s2_endurance_murky.npz": "bfd183b950f2c1e8a14e2cb4a9dc38d86644595eacdbcdfb0e22569d718b4246",
+  "ml/forecast/out/eval200/diff3s3_endurance_murky.npz": "e4eefc69cb0cda912e6d813df0a90cca794d40d37bd5dd162997ff89de570499",
+  "ml/forecast/out/eval200/gru_endurance_murky.npz": "8175b1060aebe1382c32700708516dcabd7ccb4ae917ab525bd0be791367b55c",
+  "ml/forecast/out/eval200/pf_endurance_murky_p0of2.npz": "79b774334bfd85c9cb6cd118895b183620d0566db9525372fbc35adfc82b64dc",
+  "ml/forecast/out/eval200/pf_endurance_murky_p1of2.npz": "80b230f578dc8bf6c7f5a353fac9aa6ede6e411058a293ebdc470604cdf06a8d"
+ },
+ "stamped": "2026-11-12T18:00:40+13:00"
+}

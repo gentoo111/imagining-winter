@@ -1,0 +1,10 @@
+{
+ "figure": "docs/paper/figures/e0_storms.png",
+ "figure_sha256": "bca84001fc82bc443630ab3d935dbfb13e02dcaeae60952fb76fe2448203828d",
+ "inputs": {
+  "ml/forecast/figures_paper.py": "dcbfcd0fdbda4d1979adc0598239a567e1515b05d880d37c8201cfa5803f7a61",
+  "ml/forecast/out/storm_seeds_greedy.json": "e66dcb1ca6f78348a12a9d4c6b5f7dd3e68ca5bb08534da325a55c58e3a25543",
+  "ml/forecast/out/storm_seeds_sample.json": "930fbdb008393883dd2dff5e7ca231f68be83d7e8c6d0190e790c362afce4e1b"
+ },
+ "stamped": "2026-11-10T04:25:11+13:00"
+}

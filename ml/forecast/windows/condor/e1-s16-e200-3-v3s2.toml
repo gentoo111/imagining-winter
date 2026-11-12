@@ -1,0 +1,25 @@
+# e1 GPU chain 2/12: S1-5: v3s2, as v3s1 -> out\eval200\diff3s2_endurance_murky.npz
+# Legacy equivalent: queue job s16_zz_e200_3_v3s2.cmd. Body: D:/LastEmbers/e1/condor/e1-s16-e200-3-v3s2.cmd (same file in this directory):
+# Own cwd (holds the wrapper's STOP file); the body does cd ml\forecast, mkdir outputs, verify (SHA256SUMS), run.
+# Segments: the script exits 85 at its 10200 s budget or on the STOP file; HTCondor restarts it in place and it
+# resumes from the parts / .state on disk.
+name        = "e1-s16-e200-3-v3s2"
+project     = "paper"
+lane        = "win-gpu"
+cpus        = 2
+memory_gb   = 10
+gpus        = 1
+expected_hours = 13
+segment_hours  = 3
+
+[run]
+cwd  = "D:/compute/runs/e1-s16-e200-3-v3s2"
+cmd  = "C:/Windows/System32/cmd.exe"
+args = ["/c", "D:\\LastEmbers\\e1\\condor\\e1-s16-e200-3-v3s2.cmd"]
+env  = { PYTHONUTF8 = "1", DEVICE = "cuda", TORCH_THREADS = "2" }
+
+[after]
+jobs = ["e1-s16-e200-2-v3s1"]
+
+[notify]
+session = "paper-e1"

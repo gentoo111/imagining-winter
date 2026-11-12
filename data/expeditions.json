@@ -1,0 +1,32 @@
+{
+  "_src": "FP doc 10 (A New Home scouting). Loot and survivor counts are FP values x k (0.125); survivor counts use random rounding so the expected total matches FP. Cores are discrete and not scaled. Travel hours, site ring placement and the risky-site loss chance are OURS (FP only gives relative speeds and says 'random risk').",
+  "team": {
+    "members": 2,
+    "allowed_roles": ["worker"],
+    "cost": { "wood": 5.0 },
+    "max_teams": 1,
+    "return_factor": 0.5,
+    "group_walk_factor": 1.3333,
+    "_src": "FP 10.1: 40 wood + 5 workers (x k, min 2 people); engineers cannot scout; known routes take half the time; survivor groups walk at 80 min vs scouts 60 min. 1 team at first."
+  },
+  "beacon": { "_src": "FP Beacon 20 wood 35 steel, scaled by k as a one-off camp building" },
+  "risky_loss_chance": 0.2,
+  "sites": [
+    { "id": "crash_site", "name": "坠毁现场", "hours": [3, 5], "loot": { "wood": 21.0, "raw_food": 5.0 } },
+    { "id": "lost_expedition", "name": "失散的探险队", "hours": [4, 7], "people": { "worker": 2.75, "engineer": 1.19, "child": 0.44 } },
+    { "id": "sturdy_shelter", "name": "坚固的避难所", "hours": [5, 8], "loot": { "rations": 12.5, "wood": 31.0, "cores": 1.0 } },
+    { "id": "weather_station", "name": "气象站", "hours": [5, 8], "loot": { "coal": 11.0, "cores": 1.0 } },
+    { "id": "snow_cliff", "name": "雪崖", "hours": [6, 9], "loot": { "rations": 12.5, "wood": 8.0, "cores": 1.0 } },
+    { "id": "observatory", "name": "天文台", "hours": [8, 12], "people": { "worker": 1.44, "engineer": 2.31, "child": 0.44 } },
+    { "id": "gloomy_cave", "name": "阴暗洞穴", "hours": [8, 12], "risky": true, "people": { "worker": 1.44, "engineer": 2.31, "child": 0.44 } },
+    { "id": "freshwater_springs", "name": "温泉", "hours": [9, 13], "people": { "worker": 2.75, "child": 0.88 } },
+    { "id": "large_convoy", "name": "大车队", "hours": [10, 14], "people": { "worker": 3.31, "engineer": 2.31 } },
+    { "id": "old_coal_mine", "name": "废弃煤矿", "hours": [10, 14], "loot": { "coal": 33.0 } },
+    { "id": "ice_crevasse", "name": "冰隙", "hours": [12, 16], "people": { "worker": 1.44, "child": 0.88 } },
+    { "id": "deep_hollow", "name": "深谷", "hours": [12, 16], "people": { "worker": 1.44, "child": 0.88 } },
+    { "id": "walled_colony", "name": "围墙聚落", "hours": [14, 20], "people": { "worker": 4.44, "engineer": 2.31, "child": 0.88 } },
+    { "id": "shrouded_cave", "name": "雾隐洞", "hours": [14, 20], "people": { "child": 4.25 } },
+    { "id": "icebound_dreadnought", "name": "冰封巨舰", "hours": [18, 24], "loot": { "parts": 13.0, "wood": 31.0, "cores": 2.0 } },
+    { "id": "fishing_village", "name": "渔村", "hours": [18, 24], "loot": { "wood": 35.0, "cores": 2.0 } }
+  ]
+}

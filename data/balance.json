@@ -1,0 +1,715 @@
+{
+  "version": 2,
+  "_sources": "FP = docs/research/frostpunk-balance.md (Frostpunk 1, Normal); RW = docs/research/rimworld-body.md (RimWorld 1.5); OURS = glue neither game provides — mark and revisit in playtest, do not hand-tune.",
+  "scale": {
+    "_note": "FP starts with 80 people, we start with 10: k = 10/80. Per-person rates are unchanged; totals (fuel, start stock, pile sizes) scale by k.",
+    "k": 0.125
+  },
+  "time": {
+    "minutes_per_day": 1440,
+    "work_start_hour": 8,
+    "work_end_hour": 18,
+    "hunt_start_hour": 18,
+    "hunt_end_hour": 6,
+    "meal_hour": 19,
+    "weather_change_hour": 7,
+    "sickness_roll_hour": 2,
+    "_src": "FP 4.2 shifts 08-18, hunters 18-06; FP 3.1 weather changes at 07:00; FP 4.4 sickness settles ~00-04 (we roll at 02:00)"
+  },
+  "map": {
+    "size": 41,
+    "forest_patches": 4,
+    "coal_piles": 5,
+    "wood_crates": 4,
+    "scrap_heaps": 3,
+    "resource_ring_min": 5,
+    "resource_ring_max": 11,
+    "forest_tile_amount": 40.0,
+    "coal_seams": 2,
+    "_src": "FP 8: 4-5 coal piles, 3-4 wood crates, steel wreckage. Forest tile amount is OURS (FP: sawmills clear trees and relocate)."
+  },
+  "heat": {
+    "zero_c": -20.0,
+    "c_per_level": 10.0,
+    "level_names": [
+      "冰冻",
+      "很冷",
+      "冷",
+      "凉",
+      "宜居",
+      "舒适"
+    ],
+    "fire_spot_bonus": 2,
+    "_src": "FP 1.1: level = (T+20)/10 + insulation + zone + heater. fire_spot_bonus OURS: FP says sleeping by the generator's red zone does not make people sick."
+  },
+  "furnace": {
+    "coal_per_level_hour": 6.0,
+    "radius": 6.0,
+    "radius_per_upgrade": 2.0,
+    "max_level": 4,
+    "relight_minutes": 30,
+    "_src": "FP 2.1: 6 coal/h per power level (scaled by k), +1 heat level per power level inside the zone, range upgrade +2 tiles. Base radius and relight_minutes OURS (FP base radius unknown).",
+    "overdrive": {
+      "levels": 1,
+      "pressure_up_h": 4.0,
+      "pressure_down_h": 2.0,
+      "max_pressure": 100.0,
+      "reset_pressure": 75.0,
+      "_src": "FP Generator wiki (docs/research/frostpunk-balance.md 2.3): overdrive +1 heat level in the zone (+2 with Overdrive Couplings), no extra coal, pressure +4%/h while on, -2%/h while off; first time at 100% an event asks to sacrifice a steam core or a child and pressure drops to ~75% (Generator page; A New Home page says 65%, we use the Generator page); second time the generator explodes. OURS: an exploded furnace stays unlit for good (FP: game over)."
+    }
+  },
+  "heater": {
+    "coal_per_level_hour": 1.0,
+    "building_scale": 0.4,
+    "max_level": 3,
+    "_src": "FP 1.4: heater +1 level per tier, 1 coal/h per tier per building. Our buildings are 0.4 of an FP building (job tiers 2/4/6 vs 5/10/15), so burn x0.4. Max tier 3; the tech tree gates tiers 1/2/3."
+  },
+  "weather": {
+    "forecast_days": 2,
+    "profile_by_difficulty": {
+      "GENTLE": "a_new_home",
+      "STANDARD": "a_new_home",
+      "HARSH": "endurance",
+      "HARDCORE": "endurance"
+    },
+    "_src": "Owner 2026-10-27: hook early, big test late. Standard = FP main scenario pacing; harsh/hardcore = FP Endurance.",
+    "mode": "chaotic",
+    "_mode": "Owner 2026-11-01: 'chaotic' (the game) = no forecast; storms land at Lorenz-63 z peaks and show themselves only through noisy precursors (see weather.chaos and sim/weather.gd). 'scripted' = FP fixed days + forecast_days warning, kept for old saves, replays and RL traces/regression (RL resets pass it explicitly).",
+    "chaos": {
+      "seed_xor": 25214903917,
+      "lorenz": {
+        "sigma": 10,
+        "rho": 28,
+        "beta_num": 8,
+        "beta_den": 3,
+        "dt_div": 256,
+        "steps_per_hour": 5,
+        "spinup_steps": 7200
+      },
+      "first_day": 8,
+      "min_gap_days": 4,
+      "peak_c": 4200,
+      "tier_shallow_below_c": 4300,
+      "tier_deep_from_c": 4440,
+      "scenario": {
+        "open_day": 35,
+        "peak_c": 4000,
+        "force_day": 50
+      },
+      "oracle_horizon_days": 150,
+      "noise_level": "murky",
+      "noise_levels": {
+        "murky": {
+          "pressure": 40,
+          "wind": 3
+        },
+        "clear": {
+          "pressure": 10,
+          "wind": 1
+        }
+      },
+      "pressure": {
+        "base": 10130,
+        "z_mid": 24,
+        "z_gain": 10
+      },
+      "wind": {
+        "base": 2,
+        "y_div": 3,
+        "storm_base": 18
+      },
+      "signs": {
+        "z1_c": 3900,
+        "z2_c": 4100,
+        "animal_noise_pct": 20,
+        "halo_calm_pct": 10,
+        "halo_s1_pct": 60,
+        "grey_s2_pct": 70
+      },
+      "warning": {
+        "trend": -80,
+        "wind_ms": 9
+      },
+      "hud": {
+        "trend_down": 60,
+        "trend_down2": 120,
+        "trend_up": 60
+      },
+      "_src": "Lorenz-63 classic parameters (sigma 10, rho 28, beta 8/3; Lorenz 1963), integer fixed point. Storm temperatures, durations, A New Home's great-storm shape (5 days, -150 last night, scenario win) and the recurring FP list stay the FP numbers in weather_profiles. OURS (owner 2026-11-01: one weather for game and research, docs/ml/DIFFUSION-PROPOSAL.md, docs/ml/DIFFUSION-RESEARCH.md): time scale 5 Euler steps of dt 1/256 per game hour, spin-up 7200 steps; a storm lands at an hourly local z peak: recurring storms above peak_c/100 from first_day and >= min_gap_days after the last storm ended; a scenario storm (A New Home) at the first peak above scenario.peak_c/100 from scenario.open_day, or the first peak of any height from scenario.force_day; tier thresholds (1/100 z); precursors are noisy readings of the current state only (pressure from z, wind from |y| and the (x,y) sector, daily animals/sky from the 24 h max z); noise levels murky (default, +-4 hPa, wind +-3) / clear (+-1 hPa, wind +-1, experiments); bot warning rule; HUD trend arrows; oracle horizon."
+    }
+  },
+  "weather_profiles": {
+    "a_new_home": {
+      "_status": "PROVISIONAL: only the FP nodes known so far (doc 3.2); full day-by-day table being researched (docs/research/frostpunk-weather.md).",
+      "script": [
+        [
+          0,
+          -20
+        ],
+        [
+          3,
+          -40
+        ],
+        [
+          5,
+          -20
+        ],
+        [
+          9,
+          -40
+        ],
+        [
+          11,
+          -30
+        ],
+        [
+          14,
+          -40
+        ],
+        [
+          17,
+          -60
+        ],
+        [
+          18,
+          -70
+        ],
+        [
+          20,
+          -60
+        ],
+        [
+          23,
+          -70
+        ],
+        [
+          40,
+          -80
+        ]
+      ],
+      "storms": [
+        {
+          "day": 41,
+          "temps_by_day": [
+            -90,
+            -90,
+            -110,
+            -110,
+            -120
+          ],
+          "end_c": -30,
+          "final_phase": {
+            "start_h": 2,
+            "end_h": 7.75,
+            "c": -150
+          },
+          "scenario_end": true,
+          "_src": "FP A New Home Normal, Steam guide 3343113747: FP D42 -90, D43 -90, D44 -110, D45 -110, D46 -120, D47 02:00 -150, ~07:45 storm ends at -30 and the scenario is won (our day = FP day - 1). final_phase: the night after the last storm day, from start_h to end_h."
+        }
+      ],
+      "after": {
+        "random_min_c": -50,
+        "random_max_c": -30,
+        "random_change_chance": 0.3,
+        "recurring_storms": {
+          "first_day": 60,
+          "first_interval_days": 14,
+          "interval_step_days": -2,
+          "min_interval_days": 8,
+          "days": 2,
+          "temps_c": [
+            -70,
+            -80,
+            -90
+          ]
+        },
+        "_status": "OURS placeholder for the persistent game after the scenario's storm (FP scenario ends there)."
+      },
+      "_src": "FP A New Home Normal (docs/research/frostpunk-weather.md): D4 cold snap (-40: dev diary/namu/wiki majority over one guide's -30), D6 thaw, D10 -40, D12 -30, D15 -40, D18 -60, D19 -70, D21 -60, D24 -70 (one source, v1.0). Storm D42-47 from the 2024 Steam Normal log. OURS: D25-D41 holds -70 with one -80 day before the storm (no source has these days);"
+    },
+    "endurance": {
+      "script": [
+        [
+          0,
+          -20
+        ],
+        [
+          3,
+          -40
+        ],
+        [
+          5,
+          -30
+        ],
+        [
+          7,
+          -40
+        ],
+        [
+          9,
+          -50
+        ],
+        [
+          11,
+          -40
+        ]
+      ],
+      "storms": [],
+      "after": {
+        "random_min_c": -50,
+        "random_max_c": -30,
+        "random_change_chance": 0.3,
+        "recurring_storms": {
+          "first_day": 13,
+          "first_interval_days": 14,
+          "interval_step_days": -2,
+          "min_interval_days": 8,
+          "days": 2,
+          "temps_c": [
+            -70,
+            -80,
+            -90
+          ]
+        }
+      },
+      "_src": "FP 3.2 Endurance: -20, D4 -40, D6 -30, D8 -40, D10 -50, D12 -40; storms from day 14, 2 days, -70 then -80, interval shrinks by 2 to 8. Random walk, first interval and -90 cap are OURS."
+    }
+  },
+  "body": {
+    "change_hours_by_diff": [
+      12.0,
+      6.0,
+      4.0,
+      3.0,
+      2.0
+    ],
+    "livable_to_comfortable_hours": 18.0,
+    "_src_body": "FP 1.2 personal temperature drifts toward the place's heat level.",
+    "sick_target_by_level": {
+      "-3": 0.6,
+      "-2": 0.45,
+      "-1": 0.3,
+      "0": 0.15,
+      "1": 0.03,
+      "2": 0.0
+    },
+    "_src_sick": "FP 1.1: comfortable 0, livable 3%, chilly 15% (rolled nightly). Cold/very cold/freezing values are OURS (extrapolated, per FP doc 11.5).",
+    "sick_chance_approach_per_day": 0.33,
+    "_src_approach": "OURS: FP says chance rises/falls slowly; slope unknown.",
+    "gravely_ill_from_level": -2,
+    "gravely_ill_chance": 0.25,
+    "stage_days": 3.0,
+    "_src_stage": "FP 4.5 Normal: sick -> gravely ill -> death, 3 days per stage untreated; FP 1.1 very cold ~25% gravely ill.",
+    "hypo_safe_c": -40.0,
+    "hypo_min_rate_h": 0.031,
+    "hypo_rate_per_c_h": 0.0027,
+    "hypo_recover_factor_h": 1.125,
+    "hypo_recover_min_h": 0.0625,
+    "hypo_recover_max_h": 0.625,
+    "hypo_recover_level": 0,
+    "_src_hypo": "RW 9.1 hypothermia rates and recovery. hypo_safe_c is OURS glue (FP people work outdoors at -40, so RW's safe line maps to the bottom of FP 'very cold').",
+    "hypo_stage_work": [
+      [
+        0.04,
+        0.87
+      ],
+      [
+        0.2,
+        0.7
+      ],
+      [
+        0.35,
+        0.3
+      ],
+      [
+        0.62,
+        0.0
+      ]
+    ],
+    "hypo_stage_move": [
+      [
+        0.04,
+        1.0
+      ],
+      [
+        0.2,
+        0.9
+      ],
+      [
+        0.35,
+        0.7
+      ],
+      [
+        0.62,
+        0.0
+      ]
+    ],
+    "warm_up_from": 0.2,
+    "warm_up_until": 0.04,
+    "_src_warm": "RW 9.2 stages. Walking to the fire at 'mild' is OURS (the ad behaviour).",
+    "frostbite_min_sev": 0.37,
+    "frostbite_chance_h": 0.35,
+    "frostbite_work_loss": 0.05,
+    "frostbite_fingers": 10,
+    "frostbite_digits": 20,
+    "_src_digits": "RW body def Human: 10 fingers + 10 toes (ears/nose not modeled). Fingers count for Manipulation -> work loss on fingers only; RW toes feed Moving but no clean per-toe number, so toes have no effect (OURS). Rolls stop once all 20 are lost.",
+    "_src_frost": "RW 9.3 (simplified): above 37% severity, 35%/h; two frostbites on one part = lost; lost digit -5% work (RW E).",
+    "walk_tiles_per_minute": 0.6
+  },
+  "food": {
+    "rations_per_day": 1,
+    "starving_rations": 2,
+    "stage_days": 3.0,
+    "raw_sick_chance": 0.05,
+    "_src": "FP 4.3: 1 ration/person/day, starving eat 2, 3 days per hunger stage (full->hungry->starving->dead), raw food 1:1 and riskier. Raw sickness 5% is RW E."
+  },
+  "laws": {
+    "_src": "FP 4.2/4.3/7.1/7.2. Recipes, extended-shift hours and +2.5 discontent are FP numbers; hope/discontent sizes use FP's icon tiers x 3 points per tier (OURS conversion, FP gives tiers not percentages).",
+    "points_per_tier": 3.0,
+    "soup": {
+      "name": "稀汤",
+      "raw_per_batch": 2.0,
+      "rations_per_batch": 5.0,
+      "hope_tiers": -1,
+      "discontent_tiers": 1,
+      "text": "把生食熬成稀汤，同样的食物能多喂几张嘴，但没人喜欢喝。"
+    },
+    "food_additives": {
+      "name": "掺料口粮",
+      "raw_per_batch": 2.0,
+      "rations_per_batch": 6.0,
+      "sick_chance": 0.05,
+      "hope_tiers": -1,
+      "discontent_tiers": 1,
+      "text": "往口粮里掺锯末，分量更多，但吃了可能会病。",
+      "_src_sick": "FP 3.5% easy .. 6.5% extreme; 5% is OURS midpoint"
+    },
+    "child_labour_safe": {
+      "name": "童工（安全岗位）",
+      "jobs": [
+        "cookhouse",
+        "gathering_post",
+        "coal_pile",
+        "wood_crates",
+        "scrap_heap"
+      ],
+      "hope_tiers": -1,
+      "discontent_tiers": 0,
+      "text": "让孩子去厨房和资源堆帮忙。",
+      "_src": "FP Child Labour - Safe Jobs: cookhouse, gathering posts, resource piles. FP lists no icon tier for Safe Jobs; -1 hope is OURS."
+    },
+    "extended_shift": {
+      "name": "延长班次",
+      "start_hour": 6,
+      "end_hour": 20,
+      "discontent_per_building_day": 2.5,
+      "hope_tiers": 0,
+      "discontent_tiers": 0,
+      "text": "允许指定的岗位从 6 点干到 20 点，产量约 +40%，每个延长班岗位每天都会让人不满。"
+    }
+  },
+  "mood": {
+    "_status": "OURS, PENDING (except needs_discontent_tiers): start values, death sizes, storm forecast and daily drifts; FP gives directions but no magnitudes (FP 7.3). Revisit with RW mood mapping.",
+    "start_hope": 60.0,
+    "start_discontent": 10.0,
+    "death_hope": -8.0,
+    "death_discontent": 5.0,
+    "storm_forecast_hope": -5.0,
+    "needs_discontent_tiers": 1,
+    "_src_needs": "FP Citizen Needs modifier, tier size from Overcrowding (frostpunk-balance.md 7.1/7.2; wiki Discontent: Lack of shelter, People are hungry, Cold at home, Generator is not working). Each condition present adds a fixed +1 tier (x points_per_tier) to discontent while it holds and is removed the moment it clears; not per person, not cumulative. Re-evaluated once a day.",
+    "daily_hope_drift": 1.0,
+    "daily_discontent_drift": -1.5,
+    "breaks": [
+      {
+        "below": 35.0,
+        "mtb_days": 4.0,
+        "hours": [
+          16.0,
+          24.0
+        ],
+        "name": "消沉"
+      },
+      {
+        "below": 20.0,
+        "mtb_days": 0.8,
+        "hours": [
+          28.0,
+          36.0
+        ],
+        "name": "崩溃"
+      },
+      {
+        "below": 5.0,
+        "mtb_days": 0.5,
+        "hours": [
+          40.0,
+          120.0
+        ],
+        "name": "彻底垮掉"
+      }
+    ],
+    "catharsis_days": 3.0,
+    "_src_breaks": "RW MentalBreaker (rimworld-body.md 7.3): break thresholds 35/20/5 % mood, mean time between breaks 4/0.8/0.5 days; durations from RW examples: sad wander 16-24 h (minor), dazed 28-36 h (major), catatonic 40 h-5 d (extreme); catharsis after a break +40 mood for 3 days -> no new break for 3 days. V': camp hope stands in for each person's mood (FP has one camp value), rolled once a day with p = 1 - exp(-1/MTB); a person on a break does not work.",
+    "ultimatum": {
+      "discontent_at": 100.0,
+      "hope_at": 0.0,
+      "days": 3,
+      "clear_discontent": 80.0,
+      "clear_hope": 20.0,
+      "success_hope_tiers": 1,
+      "_src": "FP Hope/Discontent wiki (frostpunk-balance.md 7.3): discontent at max or hope at min triggers an ultimatum; the player has 'a few days' to turn it round, otherwise exile = game over; success gives a hope bonus. OURS: 3 days, 'turned round' = out of the top/bottom fifth of the bar, bonus = 1 FP icon tier. Gentle has no ultimatum; offline the deadline waits."
+    }
+  },
+  "population": {
+    "floor": 4,
+    "wanderer_check_days": 2,
+    "wanderers_per_arrival": 2,
+    "wanderer_supplies": {
+      "coal": 8.0,
+      "raw_food": 4.0
+    }
+  },
+  "events": {
+    "refugee_waves": [
+      {
+        "day": 30,
+        "all": 8.75,
+        "sick_all": 3.75,
+        "healthy": 5.0
+      },
+      {
+        "day": 31,
+        "all": 9.0,
+        "sick_all": 5.0,
+        "healthy": 4.0
+      },
+      {
+        "day": 32,
+        "all": 9.0,
+        "sick_all": 6.0,
+        "healthy": 3.0
+      }
+    ],
+    "refugee_roles": {
+      "worker": 50,
+      "engineer": 15,
+      "child": 15
+    },
+    "_src": "FP A New Home 'Refugees from Frostland' (docs/research/frostpunk-refugees.md): no random arrivals in FP; wave 1 on day 31 (ru wiki), accept all 70 (30 sick) / healthy 40 x k, random rounding. Waves 2-3 sizes, sick share and the 1-day spacing are OURS (wiki gives no numbers). Role split = FP start ratio 50:15:15. Hope/discontent sizes OURS."
+  },
+  "start": {
+    "population": 10,
+    "roles": {
+      "worker": 6,
+      "engineer": 2,
+      "child": 2
+    },
+    "resources": {
+      "coal": 0.0,
+      "wood": 3.75,
+      "parts": 1.25,
+      "raw_food": 12.5,
+      "rations": 0.0,
+      "cores": 1.0
+    },
+    "_src": "FP 8 Normal: 80 people (50/15/15), 0 coal, 30 wood, 10 steel, 100 raw food — times k; 1 steam core (discrete, not scaled). parts = FP steel."
+  },
+  "gear": {
+    "_src": "RW 1.5 (docs/research/gear-mood-life.md 1.1-1.5, rimworld-body.md 1.1-1.3): 7 quality tiers; Insulation_Cold quality mult 0.8..1.8 (Stats_Apparel InsulationBase); cloth parka 2.0 x 18 = 36 C, cloth tuque 0.5 x 18 = 9 C; clothing lowers the safe/comfortable temperature by its insulation (PawnStats ComfyTemperatureMin GearStatOffset). Tools: RW tool cabinet +6% work speed (Buildings_Misc) scaled by the melee-damage quality curve 0.8..1.65 (V' per gear-mood-life 5.1: RW tools have no quality). Loot quality: RW QualityUtility BaseGen distribution for ordinary sites, Reward distribution for risky sites; Darkest Dungeon trinkets: longer expeditions raise the quality floor one tier. OURS: one item per site visit, the three kinds equally likely, long = site min hours >= 14, durability/wear not modelled.",
+    "quality_names": [
+      "糟糕",
+      "差",
+      "普通",
+      "良好",
+      "优秀",
+      "大师",
+      "传说"
+    ],
+    "insulation_mult": [
+      0.8,
+      0.9,
+      1.0,
+      1.1,
+      1.2,
+      1.5,
+      1.8
+    ],
+    "tool_mult": [
+      0.8,
+      0.9,
+      1.0,
+      1.1,
+      1.2,
+      1.45,
+      1.65
+    ],
+    "tool_work_bonus": 0.06,
+    "kinds": [
+      {
+        "id": "parka",
+        "name": "派克大衣",
+        "insulation_c": 36.0
+      },
+      {
+        "id": "tuque",
+        "name": "毛线帽",
+        "insulation_c": 9.0
+      },
+      {
+        "id": "tool",
+        "name": "工具",
+        "insulation_c": 0.0
+      }
+    ],
+    "quality_table_normal": [
+      0.046,
+      0.169,
+      0.569,
+      0.169,
+      0.047,
+      0.0,
+      0.0
+    ],
+    "quality_table_risky": [
+      0.0,
+      0.0,
+      0.0,
+      0.31,
+      0.382,
+      0.241,
+      0.067
+    ],
+    "long_site_hours": 14,
+    "items_per_site": 1
+  },
+  "life": {
+    "_src": "RW 1.5 + Biotech (docs/research/gear-mood-life.md 4.x). 1 year = 60 days; ageing x1 adults, x4 children up to 11 then linear to x1 at 20 (Difficulty.cs, Pawn_AgeTracker); adult at 18 (LifeStages); heart attack yearly chance by age 64 2.4 % ... 80+ 18.1 %, from 0 at age 48 (RW MTB curve 0.6 -> never), untreated 77 % fatal; romance from 16; pregnancy 5 % per night x female x male fertility curves; gestation 18 days; birth healthy 90 % / sick 7.5 % / stillborn 2.5 %; mother death by birth quality (0 -> 20 %, 0.2 -> 5 %, 0.9 -> 0), quality 0.5 base (mother 20-30) + 0.05 indoors + 0.05 bed; healthy baby +8 mood (V': camp hope); pregnancy work -5 %/-10 % in 2nd/3rd trimester (Manipulation); child work ages 3 hauling (resource piles), 7 cooking/gathering. OURS: partners pair automatically (nearest age, unpartnered man/woman 16+), gender from the fixed name list, birthday spread by id, babies eat a full ration, FP children work at full speed (RW age speed curve not applied).",
+    "days_per_year": 60.0,
+    "child_rate": 4.0,
+    "child_rate_until": 11.0,
+    "adult_rate_from": 20.0,
+    "adult_age": 18,
+    "heart_attack_year": [
+      [
+        48,
+        0.0
+      ],
+      [
+        64,
+        0.024
+      ],
+      [
+        68,
+        0.03
+      ],
+      [
+        72,
+        0.042
+      ],
+      [
+        76,
+        0.068
+      ],
+      [
+        80,
+        0.181
+      ]
+    ],
+    "heart_attack_death": 0.77,
+    "partner_min_age": 16,
+    "pregnancy_chance_night": 0.05,
+    "fertility_female": [
+      [
+        14,
+        0.0
+      ],
+      [
+        20,
+        1.0
+      ],
+      [
+        28,
+        1.0
+      ],
+      [
+        35,
+        0.5
+      ],
+      [
+        40,
+        0.1
+      ],
+      [
+        45,
+        0.02
+      ],
+      [
+        50,
+        0.0
+      ]
+    ],
+    "fertility_male": [
+      [
+        14,
+        0.0
+      ],
+      [
+        18,
+        1.0
+      ],
+      [
+        50,
+        1.0
+      ],
+      [
+        90,
+        0.0
+      ]
+    ],
+    "gestation_days": 18.0,
+    "birth_healthy": 0.9,
+    "birth_sick": 0.075,
+    "mother_death": [
+      [
+        0.0,
+        0.2
+      ],
+      [
+        0.2,
+        0.05
+      ],
+      [
+        0.9,
+        0.0
+      ]
+    ],
+    "birth_quality_base": 0.5,
+    "birth_quality_bed": 0.1,
+    "baby_hope": 8.0,
+    "pregnancy_work": [
+      [
+        0.333,
+        0.95
+      ],
+      [
+        0.666,
+        0.9
+      ]
+    ],
+    "child_work_age": {
+      "default": 3,
+      "cookhouse": 7,
+      "gathering_post": 7
+    },
+    "chapters": [
+      "新家",
+      "无尽寒冬"
+    ]
+  },
+  "offline": {
+    "_src": "GDD 7: offline the camp runs at the season pace, capped, nobody dies, choices queue. Cap 12 real hours = AFK Arena's idle-reward cap (common idle-game practice; OURS choice of reference). Overdrive is switched off while away (OURS safety plan: an explosion would end the camp).",
+    "game_days_per_real_day": 20.0,
+    "_src_pace": "owner decision 2026-10-29: season ~ 3 real days (GDD 3): 60 game days / 3 real days = 20 game days per real day (1/3 game minute per real second); replaces the earlier 1/4-of-online rule.",
+    "max_real_hours": 12.0
+  }
+}
